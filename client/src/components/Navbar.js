@@ -1,7 +1,6 @@
 const Navbar = ({ currentPage, handlePageChange }) => {
   return (
     <nav className="navbar">
-      <h1>Visit Your National Parks</h1>
       <div className="links">
         <a
           href="#home"

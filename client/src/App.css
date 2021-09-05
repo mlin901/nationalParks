@@ -1,3 +1,19 @@
 body {
   background-image: url("./images/nationalpark.jpg");
 }
+
+#video {
+  margin: 0 auto;
+  display: block;
+}
+
+#searchTitle {
+  color: white;
+}
+
+#homeTitle {
+  color: white;
+  text-align: center;
+  background-color: blueviolet;
+  border-radius: 25px;
+}

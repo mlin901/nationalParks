@@ -1,5 +1,6 @@
 body {
   background-image: url("./images/nationalpark.jpg");
+  background-repeat: no-repeat;
 }
 
 #video {

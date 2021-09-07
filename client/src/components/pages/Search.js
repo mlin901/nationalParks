@@ -1,7 +1,8 @@
 import axios from "axios";
 import { useState } from "react";
-//import React, { useState } from "react";
-//import API_KEY from "dotenv";
+import API_KEY from "dotenv";
+
+const API_KEY = process.env.REACT_APP_API_KEY;
 
 const Search = () => {
   const [parkObj, setParkObj] = useState({});
@@ -17,10 +18,11 @@ const Search = () => {
     setSearch("");
   };
 
-  const searchPark = () => {
+  const searchPark = (fullName) => {
+    const API_KEY = process.env.REACT_APP_API_KEY;
     axios
       .get(
-        "https://developer.nps.gov/api/v1/parks?parkCode=&parkCode=cali&stateCode=CA&stateCode=NV&limit=10&start=0&sort=fullName&sort=description&sort=image&sort=&api_key=LXmmufx515cy8BhfojY0Rd8jCFBuaBWDhaHIzb9J"
+        `https://developer.nps.gov/api/v1/parks?parkCode=&parkCode=cali&stateCode=CA&stateCode=NV&limit=10&start=0&sort=fullName&sort=description&sort=image&sort=&api_key=${API_KEY}&${fullName}`
       )
       .then((response) => {
         console.log(response.data);

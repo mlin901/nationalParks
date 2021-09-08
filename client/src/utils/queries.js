@@ -7,12 +7,26 @@ export const QUERY_ME = gql`
     username
     email
     savedParks {
-      parkCode
-      parkName
-      description
-      image
-      link
+      parkId
+      name
     }
   }
 }
 `;
+
+// export const QUERY_ME = gql`
+// {
+//   me {
+//     _id
+//     username
+//     email
+//     savedParks {
+//       parkCode
+//       parkName
+//       description
+//       image
+//       link
+//     }
+//   }
+// }
+// `;

@@ -30,6 +30,23 @@ export const ADD_USER = gql`
   }
 `;
 
+// export const SAVE_PARK = gql`
+//   mutation savePark($input: ParkInput!) {
+//     savePark(input: $input) {
+//       _id
+//       username
+//       email
+//       savedParks {
+//         parkCode
+//         parkName
+//         description
+//         image
+//         link
+//       }
+//     }
+//   }
+// `;
+
 export const SAVE_PARK = gql`
   mutation savePark($input: ParkInput!) {
     savePark(input: $input) {
@@ -37,15 +54,25 @@ export const SAVE_PARK = gql`
       username
       email
       savedParks {
-        parkCode
-        parkName
-        description
-        image
-        link
+        parkId
+        name
       }
     }
   }
 `;
+
+// export const REMOVE_PARK = gql`
+//   mutation removePark($parkCode: String!) {
+//     removePark(parkCode: $parkCode) {
+//       _id
+//       username
+//       savedParks {
+//         parkCode 
+//         name
+//       }
+//     }
+//   }
+// `;
 
 export const REMOVE_PARK = gql`
   mutation removePark($parkCode: String!) {
@@ -53,7 +80,7 @@ export const REMOVE_PARK = gql`
       _id
       username
       savedParks {
-        parkCode 
+        parkId 
         name
       }
     }

@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import Navbar from "./Navbar";
-import Home from "./pages/Home";
-import Login from "./pages/Login";
-import Search from "./pages/Search";
-import Signup from "./pages/Signup";
-import Wishlist from "./pages/Wishlist";
+import Home from "../pages/Home";
+import Login from "../pages/Login";
+import Search from "../pages/Search";   // *****Not used anymore????
+import SearchParks from "../pages/SearchParks";  // ******Added to use SearchParks instead of Search --->??????
+import Signup from "../pages/Signup";
+import Wishlist from "../pages/Wishlist";
 
 export default function ProjectContainer() {
   const [currentPage, setCurrentPage] = useState("Home");
@@ -16,8 +17,11 @@ export default function ProjectContainer() {
     if (currentPage === "Login") {
       return <Login />;
     }
+    // if (currentPage === "Search") {
+    //   return <Search />;
+    // }
     if (currentPage === "Search") {
-      return <Search />;
+      return <SearchParks />;
     }
     if (currentPage === "Signup") {
       return <Signup />;

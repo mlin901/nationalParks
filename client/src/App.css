@@ -1,6 +1,7 @@
 body {
   background-image: url("./images/nationalpark.jpg");
   background-repeat: no-repeat;
+  background-size: cover;
 }
 
 #video {
@@ -17,4 +18,9 @@ body {
   text-align: center;
   background-color: blueviolet;
   border-radius: 25px;
+}
+
+#navbar {
+  list-style: none;
+  color: purple;
 }

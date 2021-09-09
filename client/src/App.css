@@ -20,7 +20,26 @@ body {
   border-radius: 25px;
 }
 
-#navbar {
+.navbar {
   list-style: none;
   color: purple;
+}
+
+.navbar,
+li {
+  display: inline;
+}
+
+.card-img-top {
+  max-width: 100%;
+  height: auto;
+}
+
+li,
+a {
+  display: inline;
+}
+
+.currentPage {
+  display: inline;
 }

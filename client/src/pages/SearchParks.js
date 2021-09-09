@@ -1,15 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import { Jumbotron, Container, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
+import React, { useState, useEffect } from "react";
+import {
+  Jumbotron,
+  Container,
+  Col,
+  Form,
+  Button,
+  Card,
+  CardColumns,
+} from "react-bootstrap";
 
-import Auth from '../utils/auth';
-import { savePark, getParks } from '../utils/API';
-import { saveParkIds, getSavedParkIds } from '../utils/localStorage';
+import Auth from "../utils/auth";
+import { savePark, getParks } from "../utils/API";
+import { saveParkIds, getSavedParkIds } from "../utils/localStorage";
 
 const SearchParks = () => {
   // State for holding returned api data
   const [searchedParks, setSearchedParks] = useState([]);
   // State for holding search field data
-  const [searchInput, setSearchInput] = useState('');
+  const [searchInput, setSearchInput] = useState("");
   // State to hold saved parkId values
   const [savedParkIds, setSavedParkIds] = useState(getSavedParkIds());
 
@@ -31,9 +39,9 @@ const SearchParks = () => {
     try {
       const response = await getParks(searchInput);
       // console.log(' ====1 ====== ===== ===== ==== ====');   // **********
-      // console.log(searchInput);   
+      // console.log(searchInput);
       // console.log(' ====2 ====== ===== ===== ==== ====');   // **********
-      // console.log(response.data.data);   
+      // console.log(response.data.data);
 
       // if (!response.ok) {   // *******This IF doesn't work with axios method
       //   throw new Error('something went wrong!');
@@ -48,11 +56,11 @@ const SearchParks = () => {
         parkId: park.id,
         parkName: park.name,
         description: park.description,
-        image: park.imageLink || '',
+        image: park.images[0].url || "",
       }));
 
       setSearchedParks(parkData);
-      setSearchInput('');
+      setSearchInput("");
     } catch (err) {
       console.error(err);
     }
@@ -74,7 +82,7 @@ const SearchParks = () => {
       const response = await savePark(parkToSave, token);
 
       if (!response.ok) {
-        throw new Error('something went wrong!');
+        throw new Error("something went wrong!");
       }
 
       // if park successfully saves to user's account, save park ID to state
@@ -86,30 +94,28 @@ const SearchParks = () => {
 
   return (
     <>
-      <Jumbotron fluid className='text-light bg-dark'>
+      <Jumbotron fluid className="text-light bg-dark">
         <Container>
           <h1>Search for Parks!</h1>
           <Form onSubmit={handleFormSubmit}>
             <Form.Row>
               <Col xs={12} md={8}>
                 <Form.Control
-                  name='searchInput'
+                  name="searchInput"
                   value={searchInput}
                   onChange={(e) => setSearchInput(e.target.value)}
-                  type='text'
-                  size='lg'
-                  placeholder='Search for a park'
+                  type="text"
+                  size="lg"
+                  placeholder="Search for a park"
                 />
               </Col>
               <Col xs={12} md={4}>
-                <Button type='submit' variant='success' size='lg'>
+                <Button type="submit" variant="success" size="lg">
                   Submit Search
                 </Button>
               </Col>
               <h2>
-                {searchedParks.length
-                  ? `${searchedParks.length} results:`
-                  : ''}
+                {searchedParks.length ? `${searchedParks.length} results:` : ""}
               </h2>
             </Form.Row>
           </Form>
@@ -127,21 +133,30 @@ const SearchParks = () => {
             // console.log('&&&&&&&&&&&');
             // console.log(park);
             return (
-              <Card key={park.parkId} border='dark'>
+              <Card key={park.parkId} border="dark">
                 {park.image ? (
-                  <Card.Img src={park.image} alt={`The cover for ${park.title}`} variant='top' />
+                  <Card.Img
+                    src={park.image}
+                    alt={`The cover for ${park.title}`}
+                    variant="top"
+                  />
                 ) : null}
                 <Card.Body>
                   <Card.Title>{park.parkName}</Card.Title>
                   <Card.Text>{park.description}</Card.Text>
                   {Auth.loggedIn() && (
                     <Button
-                      disabled={savedParkIds?.some((savedParkId) => savedParkId === park.parkId)}
-                      className='btn-block btn-info'
-                      onClick={() => handleSavePark(park.parkId)}>
-                      {savedParkIds?.some((savedParkId) => savedParkId === park.parkId)
-                        ? 'This park has already been saved!'
-                        : 'Save this Park!'}
+                      disabled={savedParkIds?.some(
+                        (savedParkId) => savedParkId === park.parkId
+                      )}
+                      className="btn-block btn-info"
+                      onClick={() => handleSavePark(park.parkId)}
+                    >
+                      {savedParkIds?.some(
+                        (savedParkId) => savedParkId === park.parkId
+                      )
+                        ? "This park has already been saved!"
+                        : "Save this Park!"}
                     </Button>
                   )}
                 </Card.Body>

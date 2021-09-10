@@ -43,39 +43,41 @@ const resolvers = {
     },
 
     // ****** NEW
-    savePark: async (parent, args, context) => {
-      if (context.user) {
-      //   const savedBook = await Book.create({ ...args, username: context.user.username });
-       const updatedUser =  await User.findByIdAndUpdate(
-          { _id: context.user._id },
-          { $addToSet: { savedParks: args.input } },
-          { new: true }
-        );
+    // savePark: async (parent, args, context) => {
+    //   if (context.user) {
+    //    const updatedUser =  await User.findByIdAndUpdate(
+    //       { _id: context.user._id },
+    //       { $addToSet: { savedParks: args.input } },
+    //       { new: true }
+    //     );
     
-      return updatedUser;
-      }
+    //   return updatedUser;
+    //   }
     
-      throw new AuthenticationError('You need to be logged in!');
-  },
+    //   throw new AuthenticationError('You need to be logged in!');
+    //  },
 
     // ****** OLD
-    // savePark: async (parent, args, context) => {
-    //     if (context.user) {
-    //     return User.findOneAndUpdate(
-    //       { _id: context.userId },
-    //       {
-    //         $addToSet: {
-    //           parks: args.input
-    //         },
-    //       },
-    //       {
-    //         new: true,
-    //         runValidators: true,
-    //       }
-    //     );
-    //   }
-    //   throw new AuthenticationError('You need to be logged in!');
-    // },
+    savePark: async (parent, args, context) => {
+        if (context.user) {
+          return User.findOneAndUpdate(
+            { _id: context.userId },
+            {
+              $addToSet: {
+                parks: args.input
+              },
+            },
+            {
+              new: true,
+              runValidators: true,
+            }
+          );
+        } else {
+          console.log('&&&&&&&');
+          console.log(context.user);
+        }
+      throw new AuthenticationError('You need to be logged in!');
+    },
 
     removePark: async (parent, { userId, parkId }, context) => {
       if (context.user) {

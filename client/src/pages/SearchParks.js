@@ -13,11 +13,11 @@ const SearchParks = () => {
   // State for holding returned api data
   const [searchedParks, setSearchedParks] = useState([]);
   // State for holding search field data
-  const [searchInput, setSearchInput] = useState("");
+  const [searchInput, setSearchInput] = useState('');
   // State to hold saved parkId values
   const [savedParkIds, setSavedParkIds] = useState(getSavedParkIds());
 
-  const [savePark] = useMutation(SAVE_PARK); // ***************
+  const [savePark, {error}] = useMutation(SAVE_PARK); // ***************
 
   // set up useEffect hook to save `savedParkIds` list to localStorage on component unmount
   // learn more here: https://reactjs.org/docs/hooks-effect.html#effects-with-cleanup
@@ -60,29 +60,41 @@ const SearchParks = () => {
   const handleSavePark = async (parkId) => {
 
     const parkToSave = searchedParks.find((park) => park.parkId === parkId);
-
+    console.log('++++ +++++ +++++++')  // *********
+    console.log(parkToSave);  // *********
 
     const token = Auth.loggedIn() ? Auth.getToken() : null;
+    console.log(token);
 
     if (!token) {
       return false;
     }
-
-    // **************** NEW
+    // ********* NEWER 
     try {
-      await savePark({
-        variables: {park: parkToSave},
-        update: cache => {
-          const {me} = cache.readQuery({ query: QUERY_ME });
-          cache.writeQuery({ query: QUERY_ME , data: {me: { ...me, savedParks: [...me.savedParks, parkToSave] } } })
-        }
+      const {data} = await savePark({
+        variables: { input: parkToSave }
       });
 
-      // if park successfully saves to user's account, save parkk ID to state
       setSavedParkIds([...savedParkIds, parkToSave.parkId]);
     } catch (err) {
       console.error(err);
     }
+
+    // **************** NEW
+    // try {
+    //   await savePark({
+    //     variables: {park: parkToSave},
+    //     update: cache => {
+    //       const {me} = cache.readQuery({ query: QUERY_ME });
+    //       cache.writeQuery({ query: QUERY_ME , data: {me: { ...me, savedParks: [...me.savedParks, parkToSave] } } })
+    //     }
+    //   });
+
+    //   // if park successfully saves to user's account, save park ID to state
+    //   setSavedParkIds([...savedParkIds, parkToSave.parkId]);
+    // } catch (err) {
+    //   console.error(err);
+    // }
     
     //  ************ OLD
     // try {

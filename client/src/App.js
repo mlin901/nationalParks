@@ -1,12 +1,20 @@
+// import Navbar from "./components/Navbar"; // ************
+// import Home from "./pages/Home";  // **********
+// import Login from "./pages/Login";  // **********
+// import SearchParks from "./pages/SearchParks"; // ******
+// import Signup from "./pages/Signup"; // **********
+// import Wishlist from "./pages/Wishlist"; // **********
 import "./App.css";
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
+// import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { ApolloProvider } from '@apollo/react-hooks';
 // import SearchParks from './pages/SearchParks';
-import ProjectContainer from "./components/ProjectContainer";
+import ProjectContainer from "./components/ProjectContainer";  // *********
 import {
   ApolloClient,
   InMemoryCache,
-  ApolloProvider,
+  // ApolloProvider,    // ***********
   createHttpLink,
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
@@ -31,6 +39,7 @@ const client = new ApolloClient({
 });
 
 function App() {
+  // ******** ORIGINAL
   return (
     <ApolloProvider client={client}>
       <Router>
@@ -40,6 +49,25 @@ function App() {
       </Router>
     </ApolloProvider>
   );
+  // *********** NEW
+  // return (
+  //   <ApolloProvider  client ={client}>
+  //        <Router>
+  //       <>
+  //         <Navbar />
+  //         <Switch>
+  //           <Route exact path='/' component={Home} />
+  //           <Route exact path='/Search' component={SearchParks} />
+  //           <Route exact path='/Login' component={Login} />
+  //           <Route exact path='/Signup' component={Signup} />
+  //           {/* <Route exact path='/Wishlist' component={Wishlist} /> */}
+  //           {/* <Route exact path='/saved' component={SavedParks} /> */}
+  //           <Route render={() => <h1 className='display-2'>Wrong page!</h1>} />
+  //         </Switch>
+  //       </>
+  //     </Router>
+  //   </ApolloProvider> 
+  // );
 }
 
 export default App;

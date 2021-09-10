@@ -1,5 +1,6 @@
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
+const parkSchema = require('./Park');
 
 const userSchema = new Schema({
   name: {
@@ -19,6 +20,7 @@ const userSchema = new Schema({
     required: true,
     minlength: 5,
   },
+  savedParks: [parkSchema],
 });
 
 userSchema.pre('save', async function (next) {
@@ -33,6 +35,10 @@ userSchema.pre('save', async function (next) {
 userSchema.methods.isCorrectPassword = async function (password) {
   return bcrypt.compare(password, this.password);
 };
+
+userSchema.virtual('parkCount').get(function () {
+  return this.savedParks.length;
+});
 
 const User = model('User', userSchema);
 

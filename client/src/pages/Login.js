@@ -31,8 +31,6 @@ const Login = () => {   // *****?????
       const { data } = await login({
         variables: { ...formState },
       });
-      // console.log('^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^');
-      // console.log(data);
       Auth.login(data.login.token);
 
     } catch (e) {

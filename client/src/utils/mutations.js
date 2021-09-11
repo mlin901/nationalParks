@@ -81,6 +81,7 @@ export const SAVE_PARK = gql`
       name
       email
       savedParks {
+        _id
         parkId
         parkName
         description

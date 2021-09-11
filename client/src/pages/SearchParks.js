@@ -72,11 +72,19 @@ const SearchParks = () => {
 
        // ********* NEWER(3) 
        try {
-        const {data} = await savePark({
-          variables: { input: parkToSave }
+        // $$$$$$$$$
+        const { data } = await savePark({
+          variables: {
+            userId: Auth.getUser().data.id,
+            input: parkToSave
+          },
         });
-        console.log('&& && && &&');
-        console.log(data);
+
+        // const {data} = await savePark({  // $$$$$$$$$
+        //   variables: { input: parkToSave }   // $$$$$$$$$
+        // });
+        // console.log('&& && && &&');
+        // console.log(data);
 
         setSavedParkIds([...savedParkIds, parkToSave.parkId]);
       } catch (err) {

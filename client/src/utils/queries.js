@@ -25,6 +25,7 @@ export const QUERY_ME = gql`
     name
     email
     savedParks {
+      _id
       parkId
       parkName
       description

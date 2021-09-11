@@ -1,12 +1,17 @@
+@import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
+
 body {
   background-image: url("./images/nationalpark.jpg");
   background-repeat: no-repeat;
   background-size: cover;
+  max-width: 100%;
 }
 
 #video {
   margin: 0 auto;
   display: block;
+  padding-top: 10%;
+  border-radius: 10%;
 }
 
 #searchTitle {
@@ -14,32 +19,56 @@ body {
 }
 
 #homeTitle {
-  color: white;
+  color: black;
   text-align: center;
-  background-color: blueviolet;
-  border-radius: 25px;
-}
-
-.navbar {
-  list-style: none;
-  color: purple;
-}
-
-.navbar,
-li {
-  display: inline;
+  font-size: 50px;
+  background-color: lightblue;
+  border-radius: 20px;
+  padding-top: 4%;
+  opacity: 60%;
+  border: black;
+  font-family: "Lobster", cursive;
+  border-color: black;
+  border-style: dotted;
 }
 
 .card-img-top {
-  max-width: 100%;
-  height: auto;
+  height: 534px;
+  width: 300px;
 }
 
-li,
-a {
+.navbar {
+  border: 1px solid #ccc;
+  border-width: 1px 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  color: cornsilk;
+  font-size: 20px;
+  font-weight: 100;
+  font-family: "Lobster", cursive;
+}
+.navbar li {
   display: inline;
 }
+.navbar a {
+  display: inline-block;
+  padding: 10px;
+  color: black;
+}
 
-.currentPage {
-  display: inline;
+.navbar li:hover a {
+  color: #eeede7;
+}
+
+#signup {
+  font-family: "Lobster", cursive;
+}
+
+#signupform {
+  padding-top: 35px;
+  opacity: 65%;
+  text-align: center;
+  padding-left: 35px;
 }

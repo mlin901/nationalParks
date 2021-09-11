@@ -43,6 +43,7 @@ const resolvers = {
     },
 
     // ****** NEWER
+    // $$$$---- Discussed with Dru
     savePark: async (parent, { input }, context) => {   // $$$-----
         // If context has a `user` property, that means the user executing this mutation has a valid JWT and is logged in
       console.log('$$$$$$$$$$$$$$$');
@@ -53,7 +54,7 @@ const resolvers = {
         return User.findOneAndUpdate(
           { _id: context.user._id },
           {
-            $addToSet: { parks: input },
+            $addToSet: { savedParks: input },
           },
           {
             new: true,

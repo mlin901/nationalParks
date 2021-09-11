@@ -15,8 +15,6 @@ router.route('/').post(createUser).put(authMiddleware, savePark);
 
 router.route('/login').post(login);
 
-router.route('/me').get(authMiddleware, getSingleUser);
-
 router.route('/parks/:parkId').delete(authMiddleware, deletePark);
 
 module.exports = router;

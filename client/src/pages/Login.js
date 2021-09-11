@@ -3,11 +3,15 @@ import { Link } from "react-router-dom";
 // import { useMutation } from "@apollo/client";
 import { useMutation } from '@apollo/react-hooks';  // *******
 import { LOGIN_USER } from "../utils/mutations";
-
 import Auth from "../utils/auth";
 
-const Login = (props) => {
-  const [formState, setFormState] = useState({ email: "", password: "" });
+// const Login = (props) => {   // *****?????
+const Login = () => {   // *****?????
+  const [formState, setFormState] = useState({ email: '', password: '' });
+  const [validated] = useState(false);    // ************
+  const [showAlert, setShowAlert] = useState(false);   // ***********
+  
+  // const [loginUser] = useMutation(LOGIN_USER);  // ***********
   const [login, { error, data }] = useMutation(LOGIN_USER);
 
   // update state based on form input changes
@@ -23,13 +27,14 @@ const Login = (props) => {
   // submit form
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    console.log(formState);
     try {
       const { data } = await login({
         variables: { ...formState },
       });
-
+      // console.log('^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^');
+      // console.log(data);
       Auth.login(data.login.token);
+
     } catch (e) {
       console.error(e);
     }
@@ -40,6 +45,9 @@ const Login = (props) => {
       password: "",
     });
   };
+
+  console.log('^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^');
+  console.log(data);
 
   return (
     <main className="flex-row justify-center mb-4">

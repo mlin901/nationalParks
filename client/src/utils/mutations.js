@@ -21,6 +21,7 @@ mutation addUser($name: String!, $password: String!, $email: String!) {
       email
       parkCount
       savedParks {
+        _id
         parkId
         parkName
         description

@@ -69,16 +69,46 @@ const SearchParks = () => {
     if (!token) {
       return false;
     }
-    // ********* NEWER 
-    try {
-      const {data} = await savePark({
-        variables: { input: parkToSave }
-      });
 
-      setSavedParkIds([...savedParkIds, parkToSave.parkId]);
-    } catch (err) {
-      console.error(err);
-    }
+       // ********* NEWER(3) 
+       try {
+        const {data} = await savePark({
+          variables: { input: parkToSave }
+        });
+        console.log('&& && && &&');
+        console.log(data);
+
+        setSavedParkIds([...savedParkIds, parkToSave.parkId]);
+      } catch (err) {
+        console.error(err);
+      }
+
+    // ******** NEWER(2)
+    // try {
+    //   await savePark({
+    //     variables: {park: parkToSave},
+    //     update: cache => {
+    //       const {me} = cache.readQuery({ query: QUERY_ME });
+    //       cache.writeQuery({ query: QUERY_ME , data: {me: { ...me, savedParks: [...me.savedParks, parkToSave] } } })
+    //     }
+    //   });
+
+    //   // if park successfully saves to user's account, save park id to state
+    //   setSavedParkIds([...savedParkIds, parkToSave.parkId]);
+    // } catch (err) {
+    //   console.error(err);
+    // }
+
+    // ********* NEWER 
+    // try {
+    //   const {data} = await savePark({
+    //     variables: { input: parkToSave }
+    //   });
+
+    //   setSavedParkIds([...savedParkIds, parkToSave.parkId]);
+    // } catch (err) {
+    //   console.error(err);
+    // }
 
     // **************** NEW
     // try {

@@ -41,7 +41,25 @@ const resolvers = {
 
       return { token, user };
     },
-
+ // ****** NEWER
+    savePark: async (parent, { userId, park }, context) => {
+      // If context has a `user` property, that means the user executing this mutation has a valid JWT and is logged in
+      if (context.user) {
+        return User.findOneAndUpdate(
+          { _id: userId },
+          {
+            $addToSet: { parks: park },
+          },
+          {
+            new: true,
+            runValidators: true,
+          }
+        );
+      }
+      // If user attempts to execute this mutation and isn't logged in, throw an error
+      throw new AuthenticationError('You need to be logged in!');
+    },
+    
     // ****** NEW
     // savePark: async (parent, args, context) => {
     //   if (context.user) {
@@ -58,26 +76,28 @@ const resolvers = {
     //  },
 
     // ****** OLD
-    savePark: async (parent, args, context) => {
-        if (context.user) {
-          return User.findOneAndUpdate(
-            { _id: context.userId },
-            {
-              $addToSet: {
-                parks: args.input
-              },
-            },
-            {
-              new: true,
-              runValidators: true,
-            }
-          );
-        } else {
-          console.log('&&&&&&&');
-          console.log(context.user);
-        }
-      throw new AuthenticationError('You need to be logged in!');
-    },
+    // savePark: async (parent, args, context) => {
+    //     if (context.user) {
+    //       console.log('&&&&&&&------');
+    //       console.log(context.user);
+    //       return User.findOneAndUpdate(
+    //         { _id: context.userId },
+    //         {
+    //           $addToSet: {
+    //             parks: args.input
+    //           },
+    //         },
+    //         {
+    //           new: true,
+    //           runValidators: true,
+    //         }
+    //       );
+    //     } else {
+    //       console.log('&&&&&&&=====');
+    //       console.log(context);
+    //     }
+    //   throw new AuthenticationError('You need to be logged in!');
+    // },
 
     removePark: async (parent, { userId, parkId }, context) => {
       if (context.user) {

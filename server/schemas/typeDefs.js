@@ -23,7 +23,7 @@ type User {
   }
 
   input ParkInput {
-    parkId: String!
+    parkId: String
     parkName: String
     description: String
     image: String

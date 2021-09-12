@@ -80,75 +80,12 @@ const SearchParks = () => {
           },
         });
 
-        // const {data} = await savePark({  // $$$$$$$$$
-        //   variables: { input: parkToSave }   // $$$$$$$$$
-        // });
-        // console.log('&& && && &&');
-        // console.log(data);
 
         setSavedParkIds([...savedParkIds, parkToSave.parkId]);
       } catch (err) {
         console.error(err);
       }
 
-    // ******** NEWER(2)
-    // try {
-    //   await savePark({
-    //     variables: {park: parkToSave},
-    //     update: cache => {
-    //       const {me} = cache.readQuery({ query: QUERY_ME });
-    //       cache.writeQuery({ query: QUERY_ME , data: {me: { ...me, savedParks: [...me.savedParks, parkToSave] } } })
-    //     }
-    //   });
-
-    //   // if park successfully saves to user's account, save park id to state
-    //   setSavedParkIds([...savedParkIds, parkToSave.parkId]);
-    // } catch (err) {
-    //   console.error(err);
-    // }
-
-    // ********* NEWER 
-    // try {
-    //   const {data} = await savePark({
-    //     variables: { input: parkToSave }
-    //   });
-
-    //   setSavedParkIds([...savedParkIds, parkToSave.parkId]);
-    // } catch (err) {
-    //   console.error(err);
-    // }
-
-    // **************** NEW
-    // try {
-    //   await savePark({
-    //     variables: {park: parkToSave},
-    //     update: cache => {
-    //       const {me} = cache.readQuery({ query: QUERY_ME });
-    //       cache.writeQuery({ query: QUERY_ME , data: {me: { ...me, savedParks: [...me.savedParks, parkToSave] } } })
-    //     }
-    //   });
-
-    //   // if park successfully saves to user's account, save park ID to state
-    //   setSavedParkIds([...savedParkIds, parkToSave.parkId]);
-    // } catch (err) {
-    //   console.error(err);
-    // }
-    
-    //  ************ OLD
-    // try {
-    //   const response = await savePark(parkToSave, token);
-    //   console.log('####### ######## ######');
-    //   console.log(parkToSave);
-    //   console.log(token);
-    //   if (!response.ok) {
-    //     throw new Error("something went wrong!");
-    //   }
-
-    //   // if park successfully saves to user's account, save park ID to state
-    //   setSavedParkIds([...savedParkIds, parkToSave.parkId]);
-    // } catch (err) {
-    //   console.error(err);
-    // }
   };
 
   return (

@@ -3,14 +3,6 @@ const { User, Park } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
-  // Query: {
-  //   me: async (parent, args, context) => {
-  //     if (context.user) {
-  //       return User.findOne({ _id: context.user._id });
-  //     }
-  //     throw new AuthenticationError('You need to be logged in!');
-  //   },
-  // },
 
   Query: {
     me: async (parent, { name }) => {
@@ -42,8 +34,7 @@ const resolvers = {
       return { token, user };
     },
 
-    // ****** NEWER
-    // $$$$---- Discussed with Dru
+    // **** Discussed with Dru
     savePark: async (parent, { input }, context) => {   // $$$-----
         // If context has a `user` property, that means the user executing this mutation has a valid JWT and is logged in
       console.log('$$$$$$$$$$$$$$$');
@@ -65,45 +56,6 @@ const resolvers = {
       // If user attempts to execute this mutation and isn't logged in, throw an error
       throw new AuthenticationError('You need to be logged in!');
     },
-    
-    // ****** NEW
-    // savePark: async (parent, args, context) => {
-    //   if (context.user) {
-    //    const updatedUser =  await User.findByIdAndUpdate(
-    //       { _id: context.user._id },
-    //       { $addToSet: { savedParks: args.input } },
-    //       { new: true }
-    //     );
-    
-    //   return updatedUser;
-    //   }
-    
-    //   throw new AuthenticationError('You need to be logged in!');
-    //  },
-
-    // ****** OLD
-    // savePark: async (parent, args, context) => {
-    //     if (context.user) {
-    //       console.log('&&&&&&&------');
-    //       console.log(context.user);
-    //       return User.findOneAndUpdate(
-    //         { _id: context.userId },
-    //         {
-    //           $addToSet: {
-    //             parks: args.input
-    //           },
-    //         },
-    //         {
-    //           new: true,
-    //           runValidators: true,
-    //         }
-    //       );
-    //     } else {
-    //       console.log('&&&&&&&=====');
-    //       console.log(context);
-    //     }
-    //   throw new AuthenticationError('You need to be logged in!');
-    // },
 
     removePark: async (parent, { userId, parkId }, context) => {
       if (context.user) {

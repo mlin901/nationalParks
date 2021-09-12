@@ -1,9 +1,9 @@
-// import Navbar from "./components/Navbar"; // ************
-// import Home from "./pages/Home";  // **********
+// import Navbar from "./components/Navbar"; // ************ alt
+// import Home from "./pages/Home";  // ********** alt
 // import Login from "./pages/Login";  // **********
-// import SearchParks from "./pages/SearchParks"; // ******
-// import Signup from "./pages/Signup"; // **********
-// import Wishlist from "./pages/Wishlist"; // **********
+// import SearchParks from "./pages/SearchParks"; // ****** alt
+// import Signup from "./pages/Signup"; // ********** alt
+// import Wishlist from "./pages/Wishlist"; // ********** alt
 import "./App.css";
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
@@ -14,27 +14,12 @@ import ProjectContainer from "./components/ProjectContainer";  // *********
 import {
   ApolloClient,
   InMemoryCache,  
-  // ApolloProvider,    // ***********
-  createHttpLink,   // ***********
+  // ApolloProvider,    
+  createHttpLink,  
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 
 
-// *********** NEW
-// const client = new ApolloClient({
-//   request: operation => {
-//     const token = localStorage.getItem('id_token');
-
-//     operation.setContext({
-//       headers: {
-//         authorization: token ? `Bearer ${token}` : ''
-//       }
-//     })
-//   },cache: new InMemoryCache(),
-//   uri: '/graphql'
-// });
-
-// ************* OLD
 const httpLink = createHttpLink({
   uri: '/graphql',
 });
@@ -65,7 +50,7 @@ function App() {
       </Router>
     </ApolloProvider>
   );
-  // *********** NEW
+  // *********** alt
   // return (
   //   <ApolloProvider  client ={client}>
   //        <Router>

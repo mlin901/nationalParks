@@ -32,24 +32,27 @@ export const loginUser = (userData) => {
   });
 };
 
-// save park data for a logged in user     // ********* need to restore this at some point
+// save park data for a logged in user    
 export const savePark = (parkData, token) => {
-  console.log("***** ***** ****** ******* ****** ****** *******");
-  return "";
-  // return fetch('/api/users', {
-  //   method: 'PUT',
-  //   headers: {
-  //     'Content-Type': 'application/json',
-  //     authorization: `Bearer ${token}`,
-  //   },
-  //   body: JSON.stringify(parkData),
-  // });
+
+  
+  return fetch('/api/users', {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(parkData),
+  });
+
 };
 
 // Remove saved park data for a logged in user
 export const deletePark = (parkId, token) => {
-  return fetch(`/api/users/books/${parkId}`, {
-    method: "DELETE",
+
+  return fetch(`/api/users/parks/${parkId}`, {
+    method: 'DELETE',
+
     headers: {
       authorization: `Bearer ${token}`,
     },
@@ -59,6 +62,7 @@ export const deletePark = (parkId, token) => {
 // export const getParks = (query) => {
 //   return fetch(`https://developer.nps.gov/api/v1/parks?parkCode=&parkCode=&stateCode=${query}&limit=10&start=0&sort=fullName&sort=description&sort=image&sort=&api_key=LXmmufx515cy8BhfojY0Rd8jCFBuaBWDhaHIzb9J`);
 // };   // ******This one worked*****
+
 
 //const name = data.fullName;
 export const getParks = (search) => {
@@ -167,7 +171,7 @@ export const getParks = (search) => {
     search = "&stateCode=WI";
   } else if (search === "Wyoming") {
     search = "&stateCode=WY";
-  }
+
 
   // const name = data.fullName;
 

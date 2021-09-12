@@ -1,32 +1,29 @@
 import React, { useState, useEffect } from "react";
-import {
-  Jumbotron,
-  Container,
-  Col,
-  Form,
-  Button,
-  Card,
-  CardColumns,
-} from "react-bootstrap";
+import { Jumbotron, Container, Col, Form, Button, Card, CardColumns } from "react-bootstrap";
 
 import Auth from "../utils/auth";
-import { savePark, getParks } from "../utils/API";
+// import { savePark, searchNatParks } from "../utils/API";
+import { searchNatParks } from "../utils/API";
 import { saveParkIds, getSavedParkIds } from "../utils/localStorage";
+import { useMutation } from '@apollo/react-hooks';  // *******
+import { SAVE_PARK } from '../utils/mutations';  // **********
+import { QUERY_ME } from '../utils/queries';  // **********
 
 const SearchParks = () => {
   // State for holding returned api data
   const [searchedParks, setSearchedParks] = useState([]);
   // State for holding search field data
-  const [searchInput, setSearchInput] = useState("");
+  const [searchInput, setSearchInput] = useState('');
   // State to hold saved parkId values
   const [savedParkIds, setSavedParkIds] = useState(getSavedParkIds());
 
+  const [savePark, {error}] = useMutation(SAVE_PARK); // ***************
+
   // set up useEffect hook to save `savedParkIds` list to localStorage on component unmount
   // learn more here: https://reactjs.org/docs/hooks-effect.html#effects-with-cleanup
-  // *****Don't know that we really need or want this
-  // useEffect(() => {
-  //   return () => saveParkIds(savedParkIds);
-  // });
+  useEffect(() => {
+    return () => saveParkIds(savedParkIds);
+  });
 
   // Method to search for parks and set state on form submit
   const handleFormSubmit = async (event) => {
@@ -37,30 +34,23 @@ const SearchParks = () => {
     }
 
     try {
-      const response = await getParks(searchInput);
-      // console.log(' ====1 ====== ===== ===== ==== ====');   // **********
-      // console.log(searchInput);
-      // console.log(' ====2 ====== ===== ===== ==== ====');   // **********
-      // console.log(response.data.data);
+      const response = await searchNatParks(searchInput);
 
       // if (!response.ok) {   // *******This IF doesn't work with axios method
       //   throw new Error('something went wrong!');
       // }
+      // const { items } = await response.data.data.json(); / *******Doesn't work with axios method
+      const items = await response.data.data;
 
-      // const { data } = await response.data.data.json(); / *******Doesn't work with axios method
-      const data = await response.data.data;
-      // console.log(' ====3 ====== ===== ===== ==== ====');   // **********
-      // console.log(data);                                  // **********
-
-      const parkData = data.map((park) => ({
+      const parkData = items.map((park) => ({
         parkId: park.id,
         parkName: park.name,
         description: park.description,
-        image: park.images[0].url || "",
+        image: park.images[0].url || '',
       }));
 
       setSearchedParks(parkData);
-      setSearchInput("");
+      setSearchInput('');
     } catch (err) {
       console.error(err);
     }
@@ -68,28 +58,34 @@ const SearchParks = () => {
 
   // Function to handle saving a park to our database
   const handleSavePark = async (parkId) => {
-    // Find the park in `searchedParks` state by the matching ID
-    const parkToSave = searchedParks.find((park) => park.parkId === parkId);
 
-    // get token
+    const parkToSave = searchedParks.find((park) => park.parkId === parkId);
+    console.log('++++ +++++ +++++++')  // *********
+    console.log(parkToSave);  // *********
+
     const token = Auth.loggedIn() ? Auth.getToken() : null;
+    console.log(token);
 
     if (!token) {
       return false;
     }
 
-    try {
-      const response = await savePark(parkToSave, token);
+       // ********* NEWER(3) 
+       try {
+        // $$$$$$$$$
+        const { data } = await savePark({
+          variables: {
+            userId: Auth.getUser().data.id,
+            input: parkToSave
+          },
+        });
 
-      if (!response.ok) {
-        throw new Error("something went wrong!");
+
+        setSavedParkIds([...savedParkIds, parkToSave.parkId]);
+      } catch (err) {
+        console.error(err);
       }
 
-      // if park successfully saves to user's account, save park ID to state
-      setSavedParkIds([...savedParkIds, parkToSave.parkId]);
-    } catch (err) {
-      console.error(err);
-    }
   };
 
   return (

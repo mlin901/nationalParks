@@ -1,51 +1,57 @@
 import { gql } from '@apollo/client';
 
-export const ADD_USER = gql`
-  mutation addUser($name: String!, $email: String!, $password: String!) {
-    addUser(name: $name, email: $email, password: $password) {
-      token
-    }
-  }
-`;
-
-// export const ADD_USER = gql`
-//   mutation addUser($name: String!, $email: String!, $password: String!) {
-//     addUser(name: $name, email: $email, password: $password) {
-//       token
-//       profile {
-//         _id
-//         name
-//       }
-//     }
-//   }
-// `;
-
-// export const ADD_SKILL = gql`
-//   mutation addSkill($profileId: ID!, $skill: String!) {
-//     addSkill(profileId: $profileId, skill: $skill) {
-//       _id
-//       name
-//       skills
-//     }
-//   }
-// `;
-
 export const LOGIN_USER = gql`
   mutation login($email: String!, $password: String!) {
     login(email: $email, password: $password) {
       token
+      user {
+        _id
+      }
     }
   }
 `;
 
-// export const LOGIN_USER = gql`
-//   mutation login($email: String!, $password: String!) {
-//     login(email: $email, password: $password) {
-//       token
-//       profile {
-//         _id
-//         name
-//       }
-//     }
-//   }
-// `;
+export const ADD_USER = gql`
+mutation addUser($name: String!, $password: String!, $email: String!) {
+  addUser(name: $name, password: $password, email: $email) {
+    user {
+      _id
+      name
+      email
+      parkCount
+      savedParks {
+        _id
+        parkId
+        parkName
+        description
+        image
+      }
+    }
+    token
+  }
+}
+`;
+
+export const SAVE_PARK = gql`
+  mutation savePark($input: ParkInput!) {
+    savePark(input: $input) {
+        _id
+        parkId
+        parkName
+        description
+        image
+    }
+  }
+`;
+
+export const REMOVE_PARK = gql`
+  mutation removePark($parkId: String!) {
+    removePark(parkId: $parkId) {
+      _id
+      name
+      savedParks {
+        parkName 
+      }
+    }
+  }
+`;

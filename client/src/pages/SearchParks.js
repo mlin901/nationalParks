@@ -34,7 +34,14 @@ const SearchParks = () => {
     }
 
     try {
-      const response = await searchNatParks(searchInput);
+
+      const response = await getParks(searchInput);
+      console.log(response.data.data);
+      // console.log(' ====1 ====== ===== ===== ==== ====');   // **********
+      // console.log(searchInput);
+      // console.log(' ====2 ====== ===== ===== ==== ====');   // **********
+      // console.log(response.data.data);
+
 
       // if (!response.ok) {   // *******This IF doesn't work with axios method
       //   throw new Error('something went wrong!');
@@ -46,7 +53,9 @@ const SearchParks = () => {
         parkId: park.id,
         parkName: park.name,
         description: park.description,
+
         image: park.images[0].url || '',
+
       }));
 
       setSearchedParks(parkData);
@@ -92,7 +101,7 @@ const SearchParks = () => {
     <>
       <Jumbotron fluid className="text-light bg-dark">
         <Container>
-          <h1>Search for Parks!</h1>
+          <h1 className="searchPark">Search for Parks!</h1>
           <Form onSubmit={handleFormSubmit}>
             <Form.Row>
               <Col xs={12} md={8}>
@@ -101,23 +110,22 @@ const SearchParks = () => {
                   value={searchInput}
                   onChange={(e) => setSearchInput(e.target.value)}
                   type="text"
-                  size="lg"
-                  placeholder="Search for a park"
+                  size="md"
+                  placeholder="Search a State to see Parks!"
                 />
               </Col>
               <Col xs={12} md={4}>
-                <Button type="submit" variant="success" size="lg">
+                <Button type="submit" variant="success" size="md">
                   Submit Search
                 </Button>
               </Col>
-              <h2>
+              <h2 id="results">
                 {searchedParks.length ? `${searchedParks.length} results:` : ""}
               </h2>
             </Form.Row>
           </Form>
         </Container>
       </Jumbotron>
-
       <Container>
         {/* <h2>
           {searchedParks.length
@@ -142,6 +150,7 @@ const SearchParks = () => {
                   <Card.Text>{park.description}</Card.Text>
                   {Auth.loggedIn() && (
                     <Button
+                      id="saveParkButton"
                       disabled={savedParkIds?.some(
                         (savedParkId) => savedParkId === park.parkId
                       )}

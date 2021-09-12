@@ -2,8 +2,12 @@ import React, { useState, useEffect } from "react";
 import { Jumbotron, Container, Col, Form, Button, Card, CardColumns } from "react-bootstrap";
 
 import Auth from "../utils/auth";
+
+import { savePark, getParks } from "../utils/API"; //re-add this file
+
 // import { savePark, searchNatParks } from "../utils/API";
 import { searchNatParks } from "../utils/API";
+
 import { saveParkIds, getSavedParkIds } from "../utils/localStorage";
 import { useMutation } from '@apollo/react-hooks';  // *******
 import { SAVE_PARK } from '../utils/mutations';  // **********
@@ -54,7 +58,7 @@ const SearchParks = () => {
         parkName: park.name,
         description: park.description,
 
-        image: park.images[0].url || '',
+        image: park.images[0].url || "",
 
       }));
 

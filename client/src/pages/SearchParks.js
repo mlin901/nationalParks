@@ -10,7 +10,7 @@ import {
 } from "react-bootstrap";
 
 import Auth from "../utils/auth";
-import { savePark, getParks } from "../utils/API";
+import { savePark, getParks } from "../utils/API"; //re-add this file
 import { saveParkIds, getSavedParkIds } from "../utils/localStorage";
 
 const SearchParks = () => {
@@ -58,7 +58,6 @@ const SearchParks = () => {
         parkName: park.name,
         description: park.description,
         image: park.images[0].url || "",
-        fullname: park.fullName,
       }));
 
       setSearchedParks(parkData);

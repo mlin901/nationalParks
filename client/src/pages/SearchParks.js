@@ -40,11 +40,10 @@ const SearchParks = () => {
     try {
 
       const response = await getParks(searchInput);
+      console.log(' ====1 ====== ===== ===== ==== ====');   // **********
+      console.log(searchInput);
+      console.log(' ====2 ====== ===== ===== ==== ====');   // **********
       console.log(response.data.data);
-      // console.log(' ====1 ====== ===== ===== ==== ====');   // **********
-      // console.log(searchInput);
-      // console.log(' ====2 ====== ===== ===== ==== ====');   // **********
-      // console.log(response.data.data);
 
 
       // if (!response.ok) {   // *******This IF doesn't work with axios method
@@ -57,9 +56,7 @@ const SearchParks = () => {
         parkId: park.id,
         parkName: park.name,
         description: park.description,
-
         image: park.images[0].url || "",
-
       }));
 
       setSearchedParks(parkData);

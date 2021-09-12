@@ -170,14 +170,14 @@ export const getParks = (search) => {
   } else if (search === "Wisconsin") {
     search = "&stateCode=WI";
   } else if (search === "Wyoming") {
-    search = "&stateCode=WY";
+    search = "&stateCode=WY";}
 
 
   // const name = data.fullName;
 
   return axios.get(
     `https://developer.nps.gov/api/v1/parks?parkCode=&parkCode=${search}&start=0&limit=50&sort=fullName&sort=description&sort=image&sort=&api_key=LXmmufx515cy8BhfojY0Rd8jCFBuaBWDhaHIzb9J`
-  );
+  )
   // .then((data) => {
   //   console.log(data);
   //   //const name = data.fullName;
@@ -185,7 +185,7 @@ export const getParks = (search) => {
   // .catch((error) => {
   //   console.log(error);
   // });
-};
 
+};
 //filter for json file
 // for loop

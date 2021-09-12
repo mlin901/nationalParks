@@ -14,7 +14,7 @@ export const saveParkIds = (parkIdArr) => {
   }
 };
 
-export const removeParkkId = (parkId) => {
+export const removeParkId = (parkId) => {
   const savedParkIds = localStorage.getItem('saved_parks')
     ? JSON.parse(localStorage.getItem('saved_parks'))
     : null;

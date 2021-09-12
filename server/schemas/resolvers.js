@@ -1,14 +1,12 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User } = require('../models');
+const { User, Park } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
+
   Query: {
-    me: async (parent, args, context) => {
-      if (context.user) {
-        return User.findOne({ _id: context.user._id });
-      }
-      throw new AuthenticationError('You need to be logged in!');
+    me: async (parent, { name }) => {
+      return User.findOne({ name }).populate('savedParks');
     },
   },
 
@@ -35,6 +33,50 @@ const resolvers = {
 
       return { token, user };
     },
+
+    // **** Discussed with Dru
+    savePark: async (parent, { input }, context) => {   // $$$-----
+        // If context has a `user` property, that means the user executing this mutation has a valid JWT and is logged in
+      console.log('$$$$$$$$$$$$$$$');
+      console.log(context.user);
+      console.log('$$$$$$$-------');
+      console.log(input);
+      if (context.user) { 
+        return User.findOneAndUpdate(
+          { _id: context.user._id },
+          {
+            $addToSet: { savedParks: input },
+          },
+          {
+            new: true,
+            runValidators: true,
+          }
+        );
+      }   
+      // If user attempts to execute this mutation and isn't logged in, throw an error
+      throw new AuthenticationError('You need to be logged in!');
+    },
+
+    removePark: async (parent, { userId, parkId }, context) => {
+      if (context.user) {
+        return User.findOneAndUpdate(
+          { _id: parkId },
+          {
+            $pull: {
+              parks: {
+                _id: parkId,
+              },
+            },
+          },
+          { new: true }
+        );
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
+
+
+
+
 
   },
 };

@@ -33,14 +33,19 @@ input ParkInput {
 
 type Query {
   me(name: String!): User
+  parks(name: String): [Park]
 }
 
 type Mutation {
   addUser(name: String!, email: String!, password: String!): Auth
   login(email: String!, password: String!): Auth
   savePark(input: ParkInput): Park
-  removePark(userId: ID!, parkId: ID!): User
+  removePark(parkId: ID!): Park
 }
 `;
+
+// ******888888
+// removePark(userId: ID!, parkId: ID!): User 
+
 
 module.exports = typeDefs;

@@ -8,6 +8,10 @@ const resolvers = {
     me: async (parent, { name }) => {
       return User.findOne({ name }).populate('savedParks');
     },
+    parks: async (parent, { name }) => {
+      const params = name ? { name } : {};
+      return Park.find(params).sort({ createdAt: -1 });
+    },
   },
 
   Mutation: {

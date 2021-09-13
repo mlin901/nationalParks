@@ -80,9 +80,7 @@ const SearchParks = () => {
       return false;
     }
 
-       // ********* NEWER(3) 
        try {
-        // $$$$$$$$$
         const { data } = await savePark({
           variables: {
             userId: Auth.getUser().data.id,

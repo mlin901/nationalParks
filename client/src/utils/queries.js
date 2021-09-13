@@ -1,11 +1,12 @@
 import { gql } from '@apollo/client';
 
 export const QUERY_ME = gql`
-{
+query me {
   me {
     _id
     name
     email
+    parkCount
     savedParks {
       _id
       parkId
@@ -16,3 +17,15 @@ export const QUERY_ME = gql`
   }
 }
 `;
+
+// export const QUERY_PARKS = gql`
+//   query getParks {
+//     parks {
+//       _id
+//       parkId
+//       parkName
+//       description
+//       image
+//     }
+//   }
+// `;

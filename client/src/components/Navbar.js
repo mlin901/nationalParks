@@ -15,21 +15,19 @@ const Navbar = ({ currentPage, handlePageChange }) => {
   // ******
   return (
     <nav className="navbar">
-      {/* ****** */}
 
-              <div>
+        <div>
           {Auth.loggedIn() ? (
             <button className="btn btn-lg btn-light m-2" onClick={logout}>
               Logout
             </button>
           ) : (
-              <div>
-            <button className="btn btn-lg btn-light m-2" onClick={() => handlePageChange("Login")}>Login</button>
-            <button className="btn btn-lg btn-light m-2" onClick={() => handlePageChange("Signup")}>Signup</button>
-              </div>
+            <div>
+              <button className="btn btn-lg btn-light m-2" onClick={() => handlePageChange("Login")}>Login</button>
+              <button className="btn btn-lg btn-light m-2" onClick={() => handlePageChange("Signup")}>Signup</button>
+            </div>
           )}
         </div>
-        {/* ****** */}
 
       <div className="links">
         <li>

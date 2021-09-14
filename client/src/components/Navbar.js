@@ -1,30 +1,31 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
-import Auth from '../utils/auth';
+import Auth from "../utils/auth";
 
 const Navbar = ({ currentPage, handlePageChange }) => {
-// ******
+  // ******
   const logout = (event) => {
     event.preventDefault();
     Auth.logout();
   };
 
-// ******
+  // ******
   return (
     <nav className="navbar">
       {/* ****** */}
-              <div>
-          {Auth.loggedIn() ? (
-            <button className="btn btn-lg btn-light m-2" onClick={logout}>
-              Logout
-            </button>
-          ) : (
-            <div><h1>logged out</h1>
-              </div>
-          )}
-        </div>
-        {/* ****** */}
+      <div>
+        {Auth.loggedIn() ? (
+          <button className="btn btn-lg btn-light m-2" onClick={logout}>
+            Logout
+          </button>
+        ) : (
+          <div>
+            <h1>logged out</h1>
+          </div>
+        )}
+      </div>
+      {/* ****** */}
       <div className="links">
         <li>
           <a
@@ -44,17 +45,7 @@ const Navbar = ({ currentPage, handlePageChange }) => {
             Login
           </a>
         </li>
-        <li>
-          <a
-            href="#Logout"
-            onClick={() => handlePageChange("Logout")}
-            className={
-              currentPage === "Logout" ? "nav-link active" : "nav-link"
-            }
-          >
-            Logout
-          </a>
-        </li>
+
         <li>
           <a
             href="#Signup"

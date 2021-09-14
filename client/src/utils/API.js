@@ -1,5 +1,5 @@
 import axios from "axios";
-import statesAbbreviations from "./statesAbbreviations.json";
+//import statesAbbreviations from "./statesAbbreviations.json";
 //import API_KEY from "dotenv";
 
 // route to get logged in user's info (needs the token)
@@ -32,26 +32,22 @@ export const loginUser = (userData) => {
   });
 };
 
-// save park data for a logged in user    
+// save park data for a logged in user
 export const savePark = (parkData, token) => {
-
-  
-  return fetch('/api/users', {
-    method: 'PUT',
+  return fetch("/api/users", {
+    method: "PUT",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
       authorization: `Bearer ${token}`,
     },
     body: JSON.stringify(parkData),
   });
-
 };
 
 // Remove saved park data for a logged in user
 export const deletePark = (parkId, token) => {
-
   return fetch(`/api/users/parks/${parkId}`, {
-    method: 'DELETE',
+    method: "DELETE",
 
     headers: {
       authorization: `Bearer ${token}`,
@@ -62,7 +58,6 @@ export const deletePark = (parkId, token) => {
 // export const getParks = (query) => {
 //   return fetch(`https://developer.nps.gov/api/v1/parks?parkCode=&parkCode=&stateCode=${query}&limit=10&start=0&sort=fullName&sort=description&sort=image&sort=&api_key=LXmmufx515cy8BhfojY0Rd8jCFBuaBWDhaHIzb9J`);
 // };   // ******This one worked*****
-
 
 //const name = data.fullName;
 export const getParks = (search) => {
@@ -170,14 +165,14 @@ export const getParks = (search) => {
   } else if (search === "Wisconsin") {
     search = "&stateCode=WI";
   } else if (search === "Wyoming") {
-    search = "&stateCode=WY";}
-
+    search = "&stateCode=WY";
+  }
 
   // const name = data.fullName;
 
   return axios.get(
     `https://developer.nps.gov/api/v1/parks?parkCode=&parkCode=${search}&start=0&limit=50&sort=fullName&sort=description&sort=image&sort=&api_key=LXmmufx515cy8BhfojY0Rd8jCFBuaBWDhaHIzb9J`
-  )
+  );
   // .then((data) => {
   //   console.log(data);
   //   //const name = data.fullName;
@@ -185,7 +180,6 @@ export const getParks = (search) => {
   // .catch((error) => {
   //   console.log(error);
   // });
-
 };
 //filter for json file
 // for loop

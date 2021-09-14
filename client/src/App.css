@@ -145,3 +145,8 @@ button:hover {
 .button-os a:hover {
   letter-spacing: 5px;
 }
+
+#login {
+  font-family: "Lobster", cursive;
+  font-size: 25x;
+}

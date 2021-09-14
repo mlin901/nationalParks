@@ -11,6 +11,8 @@ import { ADD_USER } from "../utils/mutations";
 
 import Auth from "../utils/auth";
 
+
+
 const Signup = () => {
   const [formState, setFormState] = useState({
     name: "",
@@ -30,14 +32,14 @@ const Signup = () => {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    console.log(formState);
+    // console.log(formState);
 
     try {
       const { data } = await addUser({
         variables: { ...formState },
       });
 
-      console.log(data)
+      // console.log(data)
 
       Auth.login(data.addUser.token);
     } catch (e) {
@@ -91,10 +93,13 @@ const Signup = () => {
                     onChange={handleChange}
                   />
 
-                  <button type="submit" className="btn btn-info">
+                  <button
+                    className="btn btn-block btn-primary"
+                    style={{ cursor: "pointer" }}
+                    type="submit"
+                  >
                     Sign up
                   </button>
-
                 </form>
               )}
 

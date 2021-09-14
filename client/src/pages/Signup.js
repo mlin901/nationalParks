@@ -37,10 +37,17 @@ const Signup = () => {
         variables: { ...formState },
       });
 
+      console.log(data)
+
       Auth.login(data.addUser.token);
     } catch (e) {
       console.error(e);
     }
+    setFormState({
+      name: '',
+      email: '',
+      password: '',
+    });
   };
 
   return (
@@ -83,9 +90,11 @@ const Signup = () => {
                     value={formState.password}
                     onChange={handleChange}
                   />
+
                   <button type="submit" className="btn btn-info">
                     Sign up
                   </button>
+
                 </form>
               )}
 

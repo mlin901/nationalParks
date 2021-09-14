@@ -18,7 +18,7 @@ const userSchema = new Schema({
   password: {
     type: String,
     required: true,
-    minlength: 5,
+    minlength: 3,
   },
   // savedParks: [
   //   {
@@ -27,6 +27,7 @@ const userSchema = new Schema({
   //   },
   // ],
   savedParks: [parkSchema],
+
 // });
 
 // userSchema.pre('save', async function (next) {

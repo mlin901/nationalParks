@@ -1,7 +1,9 @@
-import React from "react";
-import { Link } from "react-router-dom";
 
-import Auth from "../utils/auth";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import logo from '../images/parkstreklogo.png'
+import Auth from '../utils/auth';
+
 
 const Navbar = ({ currentPage, handlePageChange }) => {
   // ******
@@ -14,18 +16,21 @@ const Navbar = ({ currentPage, handlePageChange }) => {
   return (
     <nav className="navbar">
       {/* ****** */}
-      <div>
-        {Auth.loggedIn() ? (
-          <button className="btn btn-lg btn-light m-2" onClick={logout}>
-            Logout
-          </button>
-        ) : (
-          <div>
-            <h1>logged out</h1>
-          </div>
-        )}
-      </div>
-      {/* ****** */}
+
+              <div>
+          {Auth.loggedIn() ? (
+            <button className="btn btn-lg btn-light m-2" onClick={logout}>
+              Logout
+            </button>
+          ) : (
+              <div>
+            <button className="btn btn-lg btn-light m-2" onClick={() => handlePageChange("Login")}>Login</button>
+            <button className="btn btn-lg btn-light m-2" onClick={() => handlePageChange("Signup")}>Signup</button>
+              </div>
+          )}
+        </div>
+        {/* ****** */}
+
       <div className="links">
         <li>
           <a
@@ -33,30 +38,13 @@ const Navbar = ({ currentPage, handlePageChange }) => {
             onClick={() => handlePageChange("Home")}
             className={currentPage === "Home" ? "nav-link active" : "nav-link"}
           >
-            Home
-          </a>
-        </li>
-        <li>
-          <a
-            href="#Login"
-            onClick={() => handlePageChange("Login")}
-            className={currentPage === "Login" ? "nav-link active" : "nav-link"}
-          >
-            Login
-          </a>
-        </li>
 
-        <li>
-          <a
-            href="#Signup"
-            onClick={() => handlePageChange("Signup")}
-            className={
-              currentPage === "Signup" ? "nav-link active" : "nav-link"
-            }
-          >
-            Signup
+            <img className="logo-image" src={logo} alt="Parks and Trek Logo"/>
+
+
           </a>
         </li>
+        
         <li>
           <a
             href="#search"

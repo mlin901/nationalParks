@@ -1,6 +1,7 @@
 // *******888888
 import React, { useState, useEffect } from 'react';
 import { Jumbotron, Container, CardColumns, Card, Button } from 'react-bootstrap';
+import { Redirect, useParams } from 'react-router-dom';
 
 import { getMe, deletePark } from '../utils/API';
 import Auth from '../utils/auth';
@@ -12,14 +13,14 @@ import { REMOVE_PARK } from '../utils/mutations';
 
 const SavedParks = () => {
 
+
   const { loading, data } = useQuery(QUERY_ME);
   const [removePark] = useMutation(REMOVE_PARK);
 
-  console.log('000000000000000000 1');
-  console.log(data);
-
   const userData = data?.me || [];
 
+  console.log('000000000000000000 1');
+  console.log(data);
   console.log('000000000000000000 2');
   console.log(userData);
 

@@ -5,13 +5,44 @@ const { signToken } = require('../utils/auth');
 const resolvers = {
 
   Query: {
-    me: async (parent, { name }) => {
-      return User.findOne({ name }).populate('savedParks');
-    },
-    parks: async (parent, { name }) => {
-      const params = name ? { name } : {};
-      return Park.find(params).sort({ createdAt: -1 });
-    },
+
+    me: async (parent, args, context) => {
+
+      if(context.user) {
+        console.log('jhlaksjdfhalksdjfhalksdfjhlksdf');
+        console.log(context.user);
+          const userData = await User.findOne({ _id: context.user._id })
+          .select('-__v -password')
+          .populate('parks')
+      
+          return userData;
+      }
+
+      throw new AuthenticationError('You are not logged in')
+
+  },
+
+    // ******000000
+    // me: async (parent, args, context) => {
+    //   console.log('!!!!!!!!!!!');
+    //   console.log(context.user);
+    //   console.log('!!!!!!!!-------');
+    //   console.log(input);
+    //   if (context.user) {
+    //     return User.findOne({ name: context.user.name }).populate('savedParks');
+        
+    //   }
+    //   throw new AuthenticationError('You need to be logged in!');
+    // },
+
+    // **** older
+    // me: async (parent, { name }) => {
+    //   return User.findOne({ name }).populate('savedParks');
+    // },
+    // parks: async (parent, { name }) => {
+    //   const params = name ? { name } : {};
+    //   return Park.find(params).sort({ createdAt: -1 });
+    // },
   },
 
   Mutation: {

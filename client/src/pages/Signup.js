@@ -5,7 +5,7 @@ import { Jumbotron } from "react-bootstrap";
 
 // import { useMutation } from "@apollo/client";
 
-import { useMutation } from '@apollo/react-hooks';  // *******
+import { useMutation } from "@apollo/react-hooks"; // *******
 
 import { ADD_USER } from "../utils/mutations";
 
@@ -90,10 +90,11 @@ const Signup = () => {
                     value={formState.password}
                     onChange={handleChange}
                   />
-                
-                    <button className="button-os">
-                      <a href="#save">Sign Up</a>
-                    </button>
+
+                  <button type="submit" className="btn btn-info">
+                    Sign up
+                  </button>
+
                 </form>
               )}
 

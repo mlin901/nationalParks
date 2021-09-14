@@ -1,19 +1,22 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../images/parkstreklogo.png'
 import Auth from '../utils/auth';
 
+
 const Navbar = ({ currentPage, handlePageChange }) => {
-// ******
+  // ******
   const logout = (event) => {
     event.preventDefault();
     Auth.logout();
   };
 
-// ******
+  // ******
   return (
     <nav className="navbar">
       {/* ****** */}
+
               <div>
           {Auth.loggedIn() ? (
             <button className="btn btn-lg btn-light m-2" onClick={logout}>
@@ -27,6 +30,7 @@ const Navbar = ({ currentPage, handlePageChange }) => {
           )}
         </div>
         {/* ****** */}
+
       <div className="links">
         <li>
           <a
@@ -34,7 +38,9 @@ const Navbar = ({ currentPage, handlePageChange }) => {
             onClick={() => handlePageChange("Home")}
             className={currentPage === "Home" ? "nav-link active" : "nav-link"}
           >
+
             <img className="logo-image" src={logo} alt="Parks and Trek Logo"/>
+
 
           </a>
         </li>

@@ -6,9 +6,8 @@ type User {
   _id: ID
   name: String
   email: String
-  parkCount: Int
   password: String
-  savedParks: [Park]
+  savedParks: [Park]!
 }
 
 type Park {
@@ -32,7 +31,7 @@ input ParkInput {
 }
 
 type Query {
-  me(name: String!): User
+  me: User
   parks(name: String): [Park]
 }
 
@@ -43,6 +42,9 @@ type Mutation {
   removePark(parkId: ID!): Park
 }
 `;
+
+// ******0000000
+//   me(name: String!): User
 
 // ******888888
 // removePark(userId: ID!, parkId: ID!): User 

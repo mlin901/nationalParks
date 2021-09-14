@@ -19,7 +19,7 @@ body {
 }
 
 #homeTitle {
-  color: black;
+  color: #142e4e;
   text-align: center;
   font-size: 50px;
   background-color: lightblue;
@@ -47,6 +47,10 @@ body {
   font-family: "Lobster", cursive;
 }
 
+.links {
+  margin-right: 25px;
+}
+
 .logo-image {
   height: 80px;
   width: 80px;
@@ -57,7 +61,7 @@ body {
 .navbar a {
   display: inline-block;
   padding: 10px;
-  color: black;
+  color: #142e4e;
 }
 
 .navbar li:hover a {

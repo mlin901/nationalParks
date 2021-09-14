@@ -18,9 +18,14 @@ const userSchema = new Schema({
   password: {
     type: String,
     required: true,
-    minlength: 5,
+    minlength: 3,
   },
   savedParks: [parkSchema],
+},
+{
+  toJSON:{
+    virtuals:true,
+  }
 });
 
 userSchema.pre('save', async function (next) {

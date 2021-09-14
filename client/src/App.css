@@ -46,6 +46,11 @@ body {
   font-weight: 100;
   font-family: "Lobster", cursive;
 }
+
+.logo-image {
+  height: 80px;
+  width: 80px;
+}
 .navbar li {
   display: inline;
 }

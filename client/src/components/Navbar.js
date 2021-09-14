@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+import logo from '../images/parkstreklogo.png'
 import Auth from '../utils/auth';
 
 const Navbar = ({ currentPage, handlePageChange }) => {
@@ -20,7 +20,9 @@ const Navbar = ({ currentPage, handlePageChange }) => {
               Logout
             </button>
           ) : (
-            <div><h1>logged out</h1>
+              <div>
+            <button className="btn btn-lg btn-light m-2" onClick={() => handlePageChange("Login")}>Login</button>
+            <button className="btn btn-lg btn-light m-2" onClick={() => handlePageChange("Signup")}>Signup</button>
               </div>
           )}
         </div>
@@ -32,40 +34,11 @@ const Navbar = ({ currentPage, handlePageChange }) => {
             onClick={() => handlePageChange("Home")}
             className={currentPage === "Home" ? "nav-link active" : "nav-link"}
           >
-            Home
+            <img className="logo-image" src={logo} alt="Parks and Trek Logo"/>
+
           </a>
         </li>
-        <li>
-          <a
-            href="#Login"
-            onClick={() => handlePageChange("Login")}
-            className={currentPage === "Login" ? "nav-link active" : "nav-link"}
-          >
-            Login
-          </a>
-        </li>
-        <li>
-          <a
-            href="#Logout"
-            onClick={() => handlePageChange("Logout")}
-            className={
-              currentPage === "Logout" ? "nav-link active" : "nav-link"
-            }
-          >
-            Logout
-          </a>
-        </li>
-        <li>
-          <a
-            href="#Signup"
-            onClick={() => handlePageChange("Signup")}
-            className={
-              currentPage === "Signup" ? "nav-link active" : "nav-link"
-            }
-          >
-            Signup
-          </a>
-        </li>
+        
         <li>
           <a
             href="#search"

@@ -28,12 +28,6 @@ body {
   opacity: 60%;
   font-family: "Lobster", cursive;
 }
-
-.card-img-top {
-  height: 534px;
-  width: 300px;
-}
-
 .navbar {
   border: 1px solid #ccc;
   border-width: 1px 0;
@@ -68,9 +62,7 @@ body {
   color: #eeede7;
 }
 
-#signup {
-  font-family: "Lobster", cursive;
-}
+
 
 #signupform {
   padding-top: 35px;
@@ -158,4 +150,9 @@ button:hover {
 #login {
   font-family: "Lobster", cursive;
   font-size: 25x;
+}
+
+
+/*#signup {
+  font-family: "Lobster", cursive;
 }

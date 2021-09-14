@@ -1,7 +1,7 @@
 const Home = () => {
   return (
     <div>
-      <h1 id="homeTitle">Visit Your National Parks!</h1>
+      <h1 id="homeTitle">Parks &amp; Trek</h1>
 
       <iframe
         id="video"

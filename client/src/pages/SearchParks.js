@@ -57,6 +57,8 @@ const SearchParks = () => {
         parkName: park.name,
         description: park.description,
         image: park.images[0].url || "",
+        latitude: park.latitude,
+        longitude: park.longitude
       }));
 
       setSearchedParks(parkData);
@@ -159,8 +161,8 @@ const SearchParks = () => {
                       {savedParkIds?.some(
                         (savedParkId) => savedParkId === park.parkId
                       )
-                        ? "This park has already been saved!"
-                        : "Save this Park!"}
+                        ? "This park has been added to wishlist"
+                        : "Add to wishlist"}
                     </Button>
                   )}
                 </Card.Body>

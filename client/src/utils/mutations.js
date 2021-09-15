@@ -24,6 +24,8 @@ export const ADD_USER = gql`
           parkName
           description
           image
+          latitude
+          longitude
         }
       }
       token
@@ -39,6 +41,8 @@ export const SAVE_PARK = gql`
       parkName
       description
       image
+      latitude
+      longitude
     }
   }
 `;

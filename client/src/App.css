@@ -29,11 +29,6 @@ body {
   font-family: "Lobster", cursive;
 }
 
-.card-img-top {
-  height: 534px;
-  width: 300px;
-}
-
 .navbar {
   border: 1px solid #ccc;
   border-width: 1px 0;

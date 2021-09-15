@@ -16,6 +16,8 @@ type Park {
   parkName: String
   description: String
   image: String
+  latitude: String
+  longitude: String
 }
 
 type Auth {
@@ -28,6 +30,8 @@ input ParkInput {
   parkName: String
   description: String
   image: String
+  latitude: String
+  longitude: String
 }
 
 type Query {
@@ -42,12 +46,5 @@ type Mutation {
   removePark(parkId: ID!): Park
 }
 `;
-
-// ******0000000
-//   me(name: String!): User
-
-// ******888888
-// removePark(userId: ID!, parkId: ID!): User 
-
 
 module.exports = typeDefs;

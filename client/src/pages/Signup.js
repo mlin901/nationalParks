@@ -62,10 +62,11 @@ const Signup = () => {
             </h2>
             <div className="card-body">
               {data ? (
-                <p>
-                  Success! You may now head{" "}
-                  <Link to="/">back to the homepage.</Link>
-                </p>
+                // <p>
+                //   Success! You may now head{" "}
+                //   <Link to="/">back to the homepage.</Link>
+                // </p>
+                <p>Success!</p>
               ) : (
                 <form onSubmit={handleFormSubmit}>
                   <input

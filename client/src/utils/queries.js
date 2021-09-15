@@ -12,6 +12,8 @@ export const QUERY_ME = gql`
         parkName
         description
         image
+        latitude
+        longitude
       }
     }
   }

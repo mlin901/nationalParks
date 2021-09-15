@@ -171,7 +171,7 @@ export const getParks = (search) => {
   // const name = data.fullName;
 
   return axios.get(
-    `https://developer.nps.gov/api/v1/parks?parkCode=&parkCode=${search}&start=0&limit=50&sort=fullName&sort=description&sort=image&sort=&api_key=LXmmufx515cy8BhfojY0Rd8jCFBuaBWDhaHIzb9J`
+    `https://developer.nps.gov/api/v1/parks?parkCode=&parkCode=${search}&start=0&limit=50&sort=fullName&sort=description&sort=image&sort=latitude&sort=longitude&sort=&api_key=LXmmufx515cy8BhfojY0Rd8jCFBuaBWDhaHIzb9J`
   );
   // .then((data) => {
   //   console.log(data);

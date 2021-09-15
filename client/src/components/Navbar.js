@@ -42,7 +42,7 @@ const Navbar = ({ currentPage, handlePageChange }) => {
 
           </a>
         </li>
-        
+    
         <li>
           <a
             href="#search"
@@ -63,6 +63,17 @@ const Navbar = ({ currentPage, handlePageChange }) => {
             }
           >
             Wishlist
+          </a>
+        </li>
+        <li>
+          <a
+            href="#mapparks"
+            onClick={() => handlePageChange("MapParks")}
+            className={
+              currentPage === "MapParks" ? "nav-link active" : "nav-link"
+            }
+          >
+            Map
           </a>
         </li>
       </div>

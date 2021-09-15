@@ -1,4 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useQuery } from '@apollo/react-hooks';
+
+import { QUERY_ME } from '../utils/queries';
 
 import Map from 'ol/Map'
 import View from 'ol/View'
@@ -8,27 +11,24 @@ import VectorSource from 'ol/source/Vector'
 import { Icon, Style } from 'ol/style';
 import XYZ from 'ol/source/XYZ'
 import Point from 'ol/geom/Point';
-import * as ol from "ol";
 import {fromLonLat} from 'ol/proj';
+import * as ol from "ol";
 
-import {useMutation, useQuery} from '@apollo/react-hooks';
-import { QUERY_ME } from '../utils/queries';
-
-
-// const iconFeature = new ol.Feature({
-//   geometry: new Point([-11794645.148075,5906844.3420342]),
-//   // geometry: new Point(ol.proj.fromLonLat([-11794645.148075,5906844.3420342])),
-//   name: 'Popup text',
-// });
 
 const MapParks = () => {
 
-  // set intial state
+  const { loading, data } = useQuery(QUERY_ME);
+  let userData = data?.me || [];
+
+  if(!userData?.savedParks) {
+    userData = data?.me || [];
+  }
+
   const [ map, setMap ] = useState()
   const [ featuresLayer, setFeaturesLayer ] = useState()
 
-  const { loading, data } = useQuery(QUERY_ME);
-  const userData = data?.me || [];
+  console.log('||||||//////');
+  console.log(userData);
 
   console.log('||||||//////|||||||/////||||||////');
   console.log(userData.savedParks);
@@ -38,6 +38,7 @@ const MapParks = () => {
   mapRef.current = map
 
   const locationArray = []
+  if (userData.savedParks) {
   for (let index = 0; index < userData.savedParks.length; index++) {    // ??????
     const varName = userData.savedParks[index].parkName;
     const latitude = parseFloat(userData.savedParks[index].latitude);
@@ -67,6 +68,7 @@ const MapParks = () => {
   }
   console.log('-----0 -----0 -------0 ||||||//////|||||||/////||||||////');
   console.log(locationArray);
+  } // *(*(*(*(*(*(*()))))))
 
   // ||||////|||||////||||||
   // const iconFeature = new ol.Feature({             
@@ -77,18 +79,18 @@ const MapParks = () => {
   // console.log(iconFeature);
 
   // ||||////|||||////||||||
-  const rome = new ol.Feature({
-    geometry: new Point(fromLonLat([12.5, 41.9])),
-  });
-  const london = new ol.Feature({
-    geometry: new Point(fromLonLat([-0.12755, 51.507222])),
-  });
-  const cities = [rome, london];
-  console.log('-----| -----| -----| ||||||//////|||||||/////||||||////');
-  console.log(cities);
-  
+  // const rome = new ol.Feature({
+  //   geometry: new Point(fromLonLat([12.5, 41.9])),
+  // });
+  // const london = new ol.Feature({
+  //   geometry: new Point(fromLonLat([-0.12755, 51.507222])),
+  // });
+  // const cities = [rome, london];
+  // console.log('-----| -----| -----| ||||||//////|||||||/////||||||////');
+  // console.log(cities);
 
   useEffect( () => {
+    if (userData.savedParks) {
     const initalFeaturesLayer = new VectorLayer({
       source: new VectorSource()
     })
@@ -143,6 +145,9 @@ const MapParks = () => {
 
     setMap(initialMap)
     setFeaturesLayer(initalFeaturesLayer)
+  } else {// *(*(*(*(*()))))
+    return <div></div>
+  }
   },[])
 
 

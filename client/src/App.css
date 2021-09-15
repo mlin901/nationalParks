@@ -29,10 +29,7 @@ body {
   font-family: "Lobster", cursive;
 }
 
-.card-img-top {
-  height: 534px;
-  width: 300px;
-}
+
 
 .navbar {
   border: 1px solid #ccc;
@@ -159,3 +156,9 @@ button:hover {
   font-family: "Lobster", cursive;
   font-size: 25x;
 }
+
+
+/*.card-img-top
+  height: 534px;
+  width: 300px;
+*\

@@ -2,7 +2,7 @@
 
 ## Description
 
-Parks & Trek is a fullstack MERN (MongoDB, Express.js, React.js and Node.js) application that allows a user to create an account and then search for National Parks in the US based on specific states. Once the user has signed up and/or is logged in, they can then save parks to their wishlist.
+Parks & Trek is a fullstack MERN (MongoDB, Express.js, React.js and Node.js) application that allows a user to create an account and then search for National Parks in the US based on specific states. Once the user has signed up and/or is logged in, they can then save parks to their wishlist. Once the user has added the desired amount of parks to their wishlist they can then view those parks on a map.
 
 ## Table of Contents
 
@@ -30,7 +30,7 @@ Run npm run develop to start the server
 
 ## Usage
 
-To use this app, sign-up first and create an account. Once the account has been created and email and password has been saved to mongoDB then you can search parks and save them to your wishlist.
+To use this app, sign-up first and create an account. Once the account has been created and email and password has been saved to mongoDB then you can search parks and save them to your wishlist. The user can then view them on a map.
 
 ## Screenshot
 
@@ -38,7 +38,7 @@ To use this app, sign-up first and create an account. Once the account has been 
 
 ## Deployed Application
 
-[Heroku Application](https://boiling-ridge-37586.herokuapp.com/)
+[Heroku Application](https://boiling-wildwood-93515.herokuapp.com/)
 
 ## Contributions
 
